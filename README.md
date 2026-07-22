@@ -1,4 +1,4 @@
-# Stylometry Spam Filter for Gmail (courtsey : MAHARANI)
+# Stylometry Spam Filter for Gmail (courtsey : MAHARANI :) )
 
 Flags (and optionally spam-files) incoming Gmail messages that appear to be
 written by a **specific target person** — even when they send from an unfamiliar
