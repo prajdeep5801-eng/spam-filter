@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m pip --version)",
+      "Bash(python3 -m venv .venv)",
+      "Bash(.venv/bin/python -m pip install --quiet --upgrade pip)",
+      "Bash(.venv/bin/python -m pip install --quiet -r requirements.txt)",
+      "Bash(.venv/bin/python -c \"import sklearn, scipy, numpy, joblib, yaml; print\\('sklearn', sklearn.__version__\\)\")",
+      "Bash(.venv/bin/python train.py --config examples/config.yaml)",
+      "Bash(.venv/bin/python score.py --config examples/config.yaml --file examples/test_genuine.txt)",
+      "Bash(.venv/bin/python score.py --config examples/config.yaml --file examples/test_impostor.txt)",
+      "Bash(.venv/bin/python -m pip install --quiet pytest)",
+      "Bash(.venv/bin/python -m pytest tests/ -v)",
+      "Bash(cat)",
+      "Bash(.venv/bin/python -c ' *)"
+    ]
+  }
+}

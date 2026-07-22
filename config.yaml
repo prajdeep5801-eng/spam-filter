@@ -1,0 +1,31 @@
+# Stylometry spam-filter configuration.
+
+# --- Corpus (local files: .txt / .eml / .mbox) ---
+corpus_dir: corpus          # emails written BY the target person (required)
+impostor_dir: impostors     # OPTIONAL: other people's emails -> supervised mode
+model_path: data/model.joblib
+profile_path: data/profile.json
+
+# --- Scoring ---
+# A new email with likelihood >= threshold is treated as "same author".
+threshold: 0.60
+# calib_z: how many std-devs below the genuine mean maps to likelihood 0.5.
+# Higher = more permissive (fewer emails flagged). One-class mode only.
+calib_z: 1.0
+
+# --- Gmail ---
+gmail:
+  credentials_path: credentials.json   # OAuth client from Google Cloud Console
+  token_path: token.json               # auto-created after first consent
+  # Which messages to examine each poll. Gmail search syntax.
+  poll_query: "in:inbox is:unread newer_than:2d"
+  poll_interval_seconds: 120
+  max_messages_per_poll: 25
+
+  # What to do when likelihood >= threshold:
+  #   "label" -> apply flag_label only (SAFE default, nothing moved)
+  #   "spam"  -> move to Spam AND apply flag_label
+  action: "label"
+  flag_label: "PossibleImpersonation"
+  # Messages we've already scored get this label so we never reprocess them.
+  processed_label: "StylometryChecked"

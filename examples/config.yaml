@@ -1,0 +1,21 @@
+# Demo config -- points at the bundled examples/ data so you can verify the
+# stylometry pipeline end-to-end WITHOUT any Gmail setup.
+#   python train.py --config examples/config.yaml
+#   python score.py --config examples/config.yaml --file examples/test_genuine.txt
+#   python score.py --config examples/config.yaml --file examples/test_impostor.txt
+corpus_dir: examples/target
+impostor_dir: examples/impostor
+model_path: data/demo_model.joblib
+profile_path: data/demo_profile.json
+threshold: 0.60
+calib_z: 1.0
+
+gmail:
+  credentials_path: credentials.json
+  token_path: token.json
+  poll_query: "in:inbox is:unread newer_than:2d"
+  poll_interval_seconds: 120
+  max_messages_per_poll: 25
+  action: "label"
+  flag_label: "PossibleImpersonation"
+  processed_label: "StylometryChecked"
